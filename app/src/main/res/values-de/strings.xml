@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nur Java</string>
+    <string name="order">Bestellen</string>
+    <string name="price">Bestellübersicht</string>
+    <string name="quantity">Anzahl</string>
+    <string name="total">Gesamtpreis</string>
+    <string name="thanks">Vielen Dank</string>
+    <string name="name">Name</string>
+</resources>
