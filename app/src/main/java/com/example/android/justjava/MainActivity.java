@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -52,11 +53,12 @@ public class MainActivity extends AppCompatActivity {
      * @param quantity
      * @return
      */
-    private String createOrderSummary(int price, int quantity, boolean addWhippedCream) {
+    private String createOrderSummary(int price, int quantity, boolean addWhippedCream, boolean addChocolate, String name) {
         Resources res = getResources();
-        return String.format("%s: %s\n%s? %s\n%s: %d\n%s: %d €\n%s!",
-                res.getString(R.string.name), "Kapitain Kunal",
+        return String.format("%s: %s\n%s? %s\n%s? %s\n%s: %d\n%s: %d €\n%s!",
+                res.getString(R.string.name), name,
                 res.getString(R.string.whippedcream), (addWhippedCream ? res.getString(R.string.yes) : res.getString(R.string.no)),
+                res.getString(R.string.chocolate), (addChocolate ? res.getString(R.string.yes) : res.getString(R.string.no)),
                 res.getString(R.string.quantity), quantity,
                 res.getString(R.string.total), price * quantity,
                 res.getString(R.string.thanks));
@@ -71,8 +73,16 @@ public class MainActivity extends AppCompatActivity {
         CheckBox whippedCream = (CheckBox) findViewById(R.id.whippedcream_checkbox_view);
         boolean hasWhippedCream = whippedCream.isChecked();
 
+        CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox_view);
+        boolean hasChocolate = chocolate.isChecked();
+
+        EditText nameEditTextView = (EditText) findViewById(R.id.name_edittext_view);
+        String name = nameEditTextView.getText().toString();
+
         Log.v(TAG, "Has whipped cream: " + hasWhippedCream);
-        displayMessage(createOrderSummary(priceForCoffee, getQuantity(), hasWhippedCream));
+        Log.v(TAG, "Has chocolate: " + hasChocolate);
+        Log.v(TAG, "Entered name: " + name);
+        displayMessage(createOrderSummary(priceForCoffee, getQuantity(), hasWhippedCream, hasChocolate, name));
     }
 
     /**

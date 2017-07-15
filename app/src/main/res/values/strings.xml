@@ -6,4 +6,9 @@
     <string name="total">Total</string>
     <string name="thanks">Thank You</string>
     <string name="name">Name</string>
+    <string name="toppings">Toppings</string>
+    <string name="whippedcream">Whipped cream</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="chocolate">Chocolate</string>
 </resources>

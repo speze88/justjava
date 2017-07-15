@@ -7,4 +7,10 @@
     <string name="total">Gesamtpreis</string>
     <string name="thanks">Vielen Dank</string>
     <string name="name">Name</string>
+    <string name="toppings">Zusätze</string>
+    <string name="whippedcream">Schlagsahne</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="chocolate">Schokolade</string>
+
 </resources>
