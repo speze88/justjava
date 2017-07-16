@@ -60,15 +60,36 @@ public class MainActivity extends AppCompatActivity {
                 res.getString(R.string.whippedcream), (addWhippedCream ? res.getString(R.string.yes) : res.getString(R.string.no)),
                 res.getString(R.string.chocolate), (addChocolate ? res.getString(R.string.yes) : res.getString(R.string.no)),
                 res.getString(R.string.quantity), quantity,
-                res.getString(R.string.total), price * quantity,
+                res.getString(R.string.total), price,
                 res.getString(R.string.thanks));
+    }
+
+    /**
+     * calculate price
+     * @param quantity
+     * @param hasWhippedCream
+     * @param hasChocolate
+     * @return
+     */
+    private int calculatePrice(int quantity, boolean hasWhippedCream, boolean hasChocolate) {
+        int priceForCoffee = 5;
+        int priceForWhippedCream = 1;
+        int priceForChocolate = 2;
+
+        if(hasWhippedCream) {
+            priceForCoffee += priceForWhippedCream;
+        }
+
+        if(hasChocolate) {
+            priceForCoffee += priceForChocolate;
+        }
+        return priceForCoffee * quantity;
     }
 
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int priceForCoffee = 5;
 
         CheckBox whippedCream = (CheckBox) findViewById(R.id.whippedcream_checkbox_view);
         boolean hasWhippedCream = whippedCream.isChecked();
@@ -82,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
         Log.v(TAG, "Has whipped cream: " + hasWhippedCream);
         Log.v(TAG, "Has chocolate: " + hasChocolate);
         Log.v(TAG, "Entered name: " + name);
+
+        int priceForCoffee = calculatePrice(getQuantity(), hasWhippedCream, hasChocolate);
+        Log.v(TAG, "Price for one coffee:" + priceForCoffee);
+
         displayMessage(createOrderSummary(priceForCoffee, getQuantity(), hasWhippedCream, hasChocolate, name));
     }
 
