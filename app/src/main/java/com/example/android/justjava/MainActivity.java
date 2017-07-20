@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -113,7 +114,23 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void setQuantity(int number) {
+        Button increaseButton = (Button) findViewById(R.id.button_increase);
+        Button decreaseButton = (Button) findViewById(R.id.button_decrease);
+
+        if (number > 0 && number < 10) {
+            increaseButton.setEnabled(true);
+            decreaseButton.setEnabled(true);
+
+            if (number == 1) {
+                decreaseButton.setEnabled(false);
+            } else if (number == 9) {
+                increaseButton.setEnabled(false);
+            }
+        } else {
+            return;
+        }
+
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
@@ -132,24 +149,14 @@ public class MainActivity extends AppCompatActivity {
      * This method increases the value of quantity by 1
      */
     public void increment(View view) {
-        Button decreaseButton = (Button) findViewById(R.id.button_decrease);
-        display(getQuantity() + 1);
-
-        if (getQuantity() + 1 > 0) {
-            decreaseButton.setEnabled(true);
-        }
+        setQuantity(getQuantity() + 1);
     }
 
     /**
      * This method decreases the value of quantity by 1
      */
     public void decrement(View view) {
-        Button decreaseButton = (Button) findViewById(R.id.button_decrease);
-        display(getQuantity() - 1);
-
-        if (getQuantity() == 0) {
-            decreaseButton.setEnabled(false);
-        }
+        setQuantity(getQuantity() - 1);
     }
 
     /**
