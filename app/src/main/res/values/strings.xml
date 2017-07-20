@@ -11,4 +11,5 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="chocolate">Chocolate</string>
+    <string name="toast_invalid_quantity">Number of cups has to be between 1 and 9</string>
 </resources>

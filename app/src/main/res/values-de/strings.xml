@@ -12,5 +12,5 @@
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="chocolate">Schokolade</string>
-
+    <string name="toast_invalid_quantity">Die Bestellmenge muss zwischen 1 und 9 betragen</string>
 </resources>

@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -124,7 +125,9 @@ public class MainActivity extends AppCompatActivity {
 
             if (number == 1) {
                 decreaseButton.setEnabled(false);
+                Toast.makeText(this, R.string.toast_invalid_quantity, Toast.LENGTH_SHORT).show();
             } else if (number == 9) {
+                Toast.makeText(this, R.string.toast_invalid_quantity, Toast.LENGTH_SHORT).show();
                 increaseButton.setEnabled(false);
             }
         } else {
@@ -133,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
+        return;
     }
 
     /**
