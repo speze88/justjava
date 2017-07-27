@@ -1,5 +1,6 @@
 package com.example.android.justjava;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -109,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
         int priceForCoffee = calculatePrice(getQuantity(), hasWhippedCream, hasChocolate);
         Log.v(TAG, "Price for one coffee:" + priceForCoffee);
 
-        displayMessage(createOrderSummary(priceForCoffee, getQuantity(), hasWhippedCream, hasChocolate, name));
+        //displayMessage(createOrderSummary(priceForCoffee, getQuantity(), hasWhippedCream, hasChocolate, name));
+        sendOrderSummaryByEmail(createOrderSummary(priceForCoffee, getQuantity(), hasWhippedCream, hasChocolate, name));
     }
 
     /**
@@ -147,6 +149,21 @@ public class MainActivity extends AppCompatActivity {
     private void displayMessage(String message) {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText("" + message);
+    }
+
+    /**
+     * Pass order summary to email app
+     * @param message
+     */
+    private void sendOrderSummaryByEmail(String message) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,message);
+        sendIntent.setType("text/plain");
+
+        if(sendIntent.resolveActivity(getPackageManager())!= null){
+            startActivity(sendIntent);
+        }
     }
 
     /**
