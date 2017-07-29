@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,14 +56,13 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     private String createOrderSummary(int price, int quantity, boolean addWhippedCream, boolean addChocolate, String name) {
-        Resources res = getResources();
-        return String.format("%s: %s\n%s? %s\n%s? %s\n%s: %d\n%s: %d €\n%s!",
-                res.getString(R.string.name), name,
-                res.getString(R.string.whippedcream), (addWhippedCream ? res.getString(R.string.yes) : res.getString(R.string.no)),
-                res.getString(R.string.chocolate), (addChocolate ? res.getString(R.string.yes) : res.getString(R.string.no)),
-                res.getString(R.string.quantity), quantity,
-                res.getString(R.string.total), price,
-                res.getString(R.string.thanks));
+        return String.format("%s\n%s? %s\n%s? %s\n%s: %d\n%s: %d €\n%s!",
+                getString(R.string.order_summary_name, name),
+                getString(R.string.whippedcream), (addWhippedCream ? getString(R.string.yes) : getString(R.string.no)),
+                getString(R.string.chocolate), (addChocolate ? getString(R.string.yes) : getString(R.string.no)),
+                getString(R.string.quantity), quantity,
+                getString(R.string.total), price,
+                getString(R.string.thanks));
     }
 
     /**
@@ -110,8 +108,9 @@ public class MainActivity extends AppCompatActivity {
         int priceForCoffee = calculatePrice(getQuantity(), hasWhippedCream, hasChocolate);
         Log.v(TAG, "Price for one coffee:" + priceForCoffee);
 
-        //displayMessage(createOrderSummary(priceForCoffee, getQuantity(), hasWhippedCream, hasChocolate, name));
-        sendOrderSummaryByEmail(createOrderSummary(priceForCoffee, getQuantity(), hasWhippedCream, hasChocolate, name));
+        String orderSummary = createOrderSummary(priceForCoffee, getQuantity(), hasWhippedCream, hasChocolate, name);
+        String subject = getString(R.string.app_name) + " " + name;
+        sendOrderSummaryByEmail(subject, orderSummary);
     }
 
     /**
@@ -142,24 +141,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method displays the message on the screen
-     *
-     * @param message
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText("" + message);
-    }
-
-    /**
      * Pass order summary to email app
      * @param message
      */
-    private void sendOrderSummaryByEmail(String message) {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
+    private void sendOrderSummaryByEmail(String subject, String message) {
+        Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
+        sendIntent.setData(Uri.parse("mailto:"));
         sendIntent.putExtra(Intent.EXTRA_TEXT,message);
-        sendIntent.setType("text/plain");
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
 
         if(sendIntent.resolveActivity(getPackageManager())!= null){
             startActivity(sendIntent);

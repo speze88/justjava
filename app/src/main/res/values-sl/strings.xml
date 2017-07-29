@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Samo Java</string>
+    <string name="chocolate">Čokolada</string>
+    <string name="name">Ime</string>
+    <string name="no">Ne</string>
+    <string name="order">Naroči</string>
+    <string name="order_summary_name">Ime: <xliff:g id="name" example="Amy">%s</xliff:g></string>
+    <string name="price">Naročilo</string>
+    <string name="quantity">Količina</string>
+    <string name="thanks">Hvala lepa</string>
+    <string name="toast_invalid_quantity">Količina mora znašati med 1 in 9 šalic</string>
+    <string name="toppings">Dodatki</string>
+    <string name="total">Znesek</string>
+    <string name="whippedcream">Smetana</string>
+    <string name="yes">Da</string>
+</resources>

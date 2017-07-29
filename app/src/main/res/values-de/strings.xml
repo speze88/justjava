@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Nur Java</string>
     <string name="order">Bestellen</string>
     <string name="price">Bestellübersicht</string>
@@ -7,6 +7,7 @@
     <string name="total">Gesamtpreis</string>
     <string name="thanks">Vielen Dank</string>
     <string name="name">Name</string>
+    <string name="order_summary_name">Name: <xliff:g id="name" example="Amy">%s</xliff:g></string>
     <string name="toppings">Zusätze</string>
     <string name="whippedcream">Schlagsahne</string>
     <string name="yes">Ja</string>

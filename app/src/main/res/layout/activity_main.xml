@@ -104,21 +104,6 @@
             />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:textAllCaps="true"
-        android:text="@string/price" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16sp"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:id="@+id/order_summary_text_view" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
